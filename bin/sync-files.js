@@ -99,7 +99,10 @@ function help () {
 }
 
 
-var argv = minimist(process.argv.slice(2), opts);
+var args = process.argv.slice(2);
+var args = args.filter((s)=>{return s.startsWith("-")}).concat(args.filter((s)=>{return !s.startsWith("-")}));
+var argv = minimist(args, opts);
+// var argv = minimist(process.argv.slice(2), opts);
 
 if (argv.help) {
   help();
